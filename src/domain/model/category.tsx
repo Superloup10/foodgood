@@ -1,0 +1,7 @@
+export enum Category {
+  MEAT = "MEAT",
+  GROCERY = "GROCERY",
+  FRUIT = "FRUIT",
+  VEGETABLE = "VEGETABLE",
+  DAIRY_PRODUCT = "DAIRY_PRODUCT",
+}
