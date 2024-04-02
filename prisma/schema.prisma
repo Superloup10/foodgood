@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -19,17 +13,35 @@ model client {
   first_name String  @db.VarChar(50)
   email      String  @unique @db.VarChar(50)
   phone      String? @db.VarChar(50)
-  carts      cart[]
+  address    String  @db.VarChar
+  carts      cart?
 }
 
 model product {
   id       Int      @id @default(autoincrement())
-  name     String   @db.VarChar(50)
-  price    Decimal  @db.Money
-  amount   Int      @db.Integer
-  image    String   @db.Text
+  name     String   @unique @db.VarChar(50)
+  price    Float    @db.Real
+  amount   Int
+  image    String
   category Category
-  buys     buy[]
+  buys     buy?
+}
+
+model cart {
+  id         Int      @id @default(autoincrement())
+  created_at DateTime @db.Date
+  client_id  Int      @unique
+  buys       buy?
+  client     client   @relation(fields: [client_id], references: [id])
+}
+
+model buy {
+  product_id Int     @unique
+  cart_id    Int     @unique
+  cart       cart    @relation(fields: [cart_id], references: [id])
+  product    product @relation(fields: [product_id], references: [id])
+
+  @@id([product_id, cart_id])
 }
 
 enum Category {
@@ -38,21 +50,4 @@ enum Category {
   FRUIT
   VEGETABLE
   DAIRY_PRODUCT
-}
-
-model cart {
-  id         Int      @id @default(autoincrement())
-  created_at DateTime @db.Date
-  client     client   @relation(fields: [client_id], references: [id])
-  client_id   Int      @unique
-  buys       buy[]
-}
-
-model buy {
-  product   product @relation(fields: [product_id], references: [id])
-  product_id Int     @unique
-  cart      cart    @relation(fields: [cart_id], references: [id])
-  cart_id    Int     @unique
-
-  @@id([product_id, cart_id])
 }

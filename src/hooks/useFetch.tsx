@@ -5,7 +5,7 @@ type FetchHook<T> = {
     error: any;
 }
 
-export default function useFetch<T>(url: string, method: "GET" | "POST" | "PUT" | "DELETE" = "PUT", body?: any): FetchHook<T> {
+export default function useFetch<T>(url: string, method: "GET" | "POST" | "PUT" | "DELETE" = "GET", body?: any): FetchHook<T> {
     const [data, setData] = useState<T | null>(null);
     const [error, setError] = useState<any>(null);
     useEffect(() => {
