@@ -72,6 +72,7 @@ const config = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+        customGreen:'#9DC284',
     },
   },
   plugins: [require("tailwindcss-animate")],
