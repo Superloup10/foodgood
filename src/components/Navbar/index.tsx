@@ -4,22 +4,28 @@ import Link from "next/link";
 export default function Navbar() {
   return (
     <div className="bg-customGreen  p-6">
-      <ul className="sm:flex justify-around ">
-        <div className="flex gap-5 ">
+      <ul className="sm:flex justify-around items-center">
+        <div className="flex gap-5 items-center">
           <Link href={"/"}>
-            <Image src="/image/logo.png" alt="lo" width={30} height={30} />
+            <Image
+              src="/image/logo.png"
+              alt="lo"
+              className="rounded-full  "
+              width={40}
+              height={40}
+            />
           </Link>
 
-          <li>foodGood</li>
+          <li className="font-bold text-3xl">foodGood</li>
         </div>
 
         <li>
           {" "}
-          <Link href={"/produits"}>Nos produits </Link>{" "}
+          <Link href={"/produits"} className="text-lg"> Nos produits </Link>{" "}
         </li>
         <li>
           {" "}
-          <Link href={"/contact"}> Nous Contacter </Link>{" "}
+          <Link href={"/contact"} className="text-lg"> Nous Contacter </Link>{" "}
         </li>
 
         <Link href={"/panier"}>
@@ -34,8 +40,7 @@ export default function Navbar() {
           </svg>
         </Link>
 
-        <div className="flex gap-5 ">
-         
+        <div className="flex gap-5 items-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -48,8 +53,9 @@ export default function Navbar() {
               clip-rule="evenodd"
             />
           </svg>
-          <Link href={"/account"}><li> Mon Compte </li></Link>
-          
+          <Link href={"/account"}>
+            <li className="text-lg"> Mon Compte </li>
+          </Link>
         </div>
       </ul>
     </div>

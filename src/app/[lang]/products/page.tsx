@@ -3,6 +3,7 @@ import useFetch from '@/hooks/useFetch';
 import React from 'react'
 import { Product } from '@/domain/model/product.dto';
 import Image from 'next/image';
+import Reseau from '@/components/Reseau';
 
 export default function Produits() {
   const { data: products } = useFetch<Product[]>("/api/v1/products");
@@ -11,6 +12,7 @@ export default function Produits() {
   return (
 
     <div>
+    
        {products &&
           products.map((product) => (
             <>
@@ -25,7 +27,7 @@ export default function Produits() {
               {product.price}€
             </>
           ))}
-      <p>nos produits</p>
+      
     </div>
   )
 }
