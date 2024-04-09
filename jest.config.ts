@@ -9,7 +9,7 @@ const config: Config = {
     coverageProvider: "v8",
     testEnvironment: "jsdom",
     moduleNameMapper: {
-        "^@/(.*)$": "./src/$1"
+        "^@/(.*)$": "<rootDir>/src/$1"
     }
 };
 
