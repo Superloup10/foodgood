@@ -1,5 +1,3 @@
-import { Category } from "@/domain/model/category";
-import { Product } from "@/domain/model/product.dto";
 import { ProductService } from "@/domain/service/product.service";
 import { NextRequest, NextResponse } from "next/server";
 

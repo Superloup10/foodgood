@@ -53,7 +53,7 @@ export class ProductRepository {
 
   async deleteProduct(name: string): Promise<number> {
     const deleteResult = await prisma.product.deleteMany({
-      where: {name},
+      where: { name },
     });
 
     return deleteResult.count;

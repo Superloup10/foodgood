@@ -17,7 +17,7 @@ export default function useFetch<T>(
       const options: any = {
         method,
         cache: "force-cache",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json"  },
       };
       if (body && (method === "POST" || method === "PUT")) {
         options.body = JSON.stringify(body);

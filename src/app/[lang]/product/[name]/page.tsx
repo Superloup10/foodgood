@@ -13,7 +13,7 @@ export default function ProductPage({ params }: { params: { name: string } }) {
       {product && (
         <>
           <Image
-            key={product?.id}
+            key={product.id}
             src={product.image}
             alt={product.name}
             width={200}

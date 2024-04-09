@@ -1,6 +1,6 @@
-import { Category } from "@prisma/client";
 import Link from "next/link";
 import Image from "next/image";
+import { Category } from "@/domain/model/category";
 
 export default function Categorie(){
 
@@ -10,13 +10,13 @@ export default function Categorie(){
           <Link href={`/${value.toLowerCase()}`} className="flex flex-col items-center justify-center">
             <Image
               key={index}
-              src={`/image/${value.toLowerCase().replace(" ", "_")}.jpg`}
+              src={`/image/${value.toLowerCase()}.jpg`}
               className="rounded-full"
               alt={value.toLowerCase()}
               width={75}
               height={75}
             />
-            <p className="flex justify-center">{value.toLowerCase()}</p>
+            <p className="flex justify-center">{value.toLowerCase().replace("_", " ")}</p>
           </Link>
         ))}
       </div>
