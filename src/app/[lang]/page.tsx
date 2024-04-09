@@ -47,10 +47,10 @@ export default function Home() {
             <CarouselContent className="-ml-4 flex items-center">
               {products &&
                 getProduitsAleatoires().map((product) => (
-                  <CarouselItem className="pl-4 basis-1/5">
+                  <CarouselItem key={product.id} className="pl-4 basis-1/5">
                     <Link href={`/product/${product.name}`}>
                     <Image
-                      key={product.id}
+                      
                       src={product.image}
                       alt={product.name}
                       width={200}
