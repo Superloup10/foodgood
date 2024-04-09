@@ -4,13 +4,16 @@ import { NextRequest, NextResponse } from "next/server";
 export class ClientController {
   constructor(private readonly service: ClientService) {}
 
-
-
   async getClient(request: NextRequest): Promise<NextResponse> {
-    const email = await request.nextUrl.searchParams.get("email")!;
+    const searchParams = new URLSearchParams(request.nextUrl.search);
+    const email = searchParams.get("email");
+    if (!email) {
+      return NextResponse.json("Le paramètre email est manquant !");
+    }
     const client = await this.service.getClient(email);
     return NextResponse.json(client);
-  }
+}
+
   async addClient(request: NextRequest): Promise<NextResponse> {
     const { name, first_name, email, address, phone } = await request.json();
     const client = await this.service.addClient(
@@ -22,6 +25,7 @@ export class ClientController {
     );
     return NextResponse.json(client);
   }
+
   async updateClient(request: NextRequest): Promise<NextResponse> {
     const { name, first_name, email, address, phone } = await request.json();
     const updatedClient = await this.service.updateClient(
@@ -35,8 +39,12 @@ export class ClientController {
   }
 
   async deleteClient(request: NextRequest): Promise<NextResponse> {
-    const {email} = await request.json();
+    const { email } = await request.json();
+    if (!email) {
+      return NextResponse.json("Le paramètre email est manquant !");
+    }
     const count = await this.service.deleteClient(email);
     return NextResponse.json(count);
   }
 }
+
