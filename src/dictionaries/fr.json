@@ -5,5 +5,27 @@
   "languages": {
     "fr": "Français",
     "en": "Anglais"
+  },
+  "category": {
+    "meat": "Viandes",
+    "grocery": "Epiceries",
+    "fruit": "Fruits",
+    "vegetable": "Légumes",
+    "dairy_product": "Produits laitiers"
+  },
+
+  "navebar": {
+    "Nos_produits": "Nos produits",
+    "Nous_contacter": "Nous contacter",
+    "Mon_compte": "Mon compte"
+  },
+  "account": {
+    "Nom": "Nom*",
+    "Prenom": "Prénom*",
+    "Email": "Email*",
+    "Adresse": "Adresse*",
+    "Telephone": "Téléphone*",
+    "Valider":"Valider",
+    "Inscription":"Inscription"
   }
 }
