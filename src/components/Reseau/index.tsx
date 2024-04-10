@@ -3,14 +3,15 @@ import Link from "next/link";
 
 export default function Reseau() {
     return (
-        <div className="fixed bottom-0 left-0 right-0 flex justify-center gap-1 mb-4">
+        <div className="fixed bottom-0 left-0 right-0 flex justify-center gap-3 mb-4">
             <div className="flex justify-center gap-1 ">
                 <Link href={"https://www.facebook.com"}>
-                    <Image src="/images/fb.png" alt="facebokk" width={25} height={25}/>
+                    <Image src="/images/fb.png" alt="facebokk" width={24} height={24}/>
                 </Link>
 
                 <Link href={"https://www.instagram.com/"}>
-                    <Image src="/images/insta.png" alt="insta" width={30} height={30}/>
+                    <div   > <Image src="/images/insta.png" alt="insta" width={24} height={24}/></div>
+                   
                 </Link>
 
                 <Link href={"mailto:votre@email.com"}>

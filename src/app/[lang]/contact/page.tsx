@@ -5,6 +5,7 @@ export default function Contact() {
     return (
         <>
             <div>
+                
                 <div className="flex flex-col md:flex-row md:justify-between items-center">
                     <p className="max-w-md mb-4 md:mr-4 md:mb-0 ml-4 text-lg text-black">
                         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt
