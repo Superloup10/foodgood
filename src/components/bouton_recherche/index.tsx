@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-export default function SearchInput({
+export default function Bouton({
   onSearchName,
 }: {
   onSearchName: (value: string) => void;

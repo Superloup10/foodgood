@@ -1,4 +1,4 @@
-import { Category } from "@prisma/client";
+import { Category } from "@/domain/model/category";
 
 export interface Product {
   id: number;

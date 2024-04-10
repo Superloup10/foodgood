@@ -7,6 +7,9 @@ import { useDictionary } from "@/context/DictionaryContext";
 
 export default function Categorie() {
   const { dictionary } = useDictionary();
+ 
+
+
 
   return (
     <div className="flex items-center justify-center h-fit sm:gap-5 sm:p-6  ">
@@ -26,8 +29,11 @@ export default function Categorie() {
           <p className="flex justify-center">
             {dictionary.category[value.toLowerCase()]}
           </p>
+         
         </Link>
+        
       ))}
+      
     </div>
   );
 }

@@ -6,6 +6,7 @@ import DictionaryProvider from "@/context/DictionaryContext";
 import Navbar from "@/components/Navbar";
 
 import Reseau from "@/components/Reseau";
+import Categorie from "@/components/Categorie";
 
 const jetbrains = JetBrains_Mono({ subsets: ["latin"] });
 
@@ -26,6 +27,7 @@ export default function RootLayout({
       <body className={jetbrains.className}>
         <DictionaryProvider locale={params.lang}>
           <Navbar />
+          
 
           <Reseau />
           {children}
