@@ -22,4 +22,15 @@ export type Dictionary = {
     Mon_compte: string;
     [key: string]: string;
   };
+
+  account:{
+    Nom: string;
+    Prenom: string;
+    Email: string;
+    Adresse: string;
+    Telephone: string;
+    Valider:string;
+    Inscription:string;
+    [key: string]: string;
+  }
 };

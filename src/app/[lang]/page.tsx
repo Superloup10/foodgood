@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import Reseau from "@/components/Reseau";
+import Categorie from "@/components/Categorie";
 
 export default function Home() {
     const {data: products} = useFetch<Product[]>("/api/v1/products");
@@ -30,6 +31,10 @@ export default function Home() {
     }
 
     return (
+    <>
+        <header>
+            <Categorie onSearchName={()=> {}}/>
+        </header>
         <main className="px-10 ">
             <div className="flex justify-justify-between gap-96">
                 <div className="mt-36">
@@ -48,7 +53,6 @@ export default function Home() {
                                     <CarouselItem key={product.id} className="pl-4 basis-1/5">
                                         <Link href={`/product/${product.name}`}>
                                             <Image
-
                                                 src={product.image}
                                                 alt={product.name}
                                                 width={200}
@@ -74,5 +78,6 @@ export default function Home() {
             </div>
             <Reseau/>
         </main>
+        </>
     );
 }

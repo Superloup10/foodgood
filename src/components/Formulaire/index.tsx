@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { Button } from "../ui/button";
+import { useDictionary } from "@/context/DictionaryContext";
 
 export default function ClientForm() {
   const [name, setName] = useState("");
@@ -12,7 +13,7 @@ export default function ClientForm() {
   const [successMessage, setSuccessMessage] = useState("");
   const [showError, setShowError] = useState(false); // Nouvel état pour contrôler l'affichage de l'erreur
   const [showSuccess, setShowSuccess] = useState(false); // Nouvel état pour contrôler l'affichage du message de succès
-
+  const { dictionary } = useDictionary();
   const handleAddClient = async (e: any) => {
     e.preventDefault();
     try {
@@ -47,6 +48,8 @@ export default function ClientForm() {
   };
 
   return (
+   
+    
     <div className="container mx-auto px-4 flex flex-col items-center">
       {showError && <p className="text-red-500">{error}</p>}
       {showSuccess && <p className="text-green-500">{successMessage}</p>}
@@ -56,7 +59,7 @@ export default function ClientForm() {
             htmlFor="name"
             className="block text-sm font-custom text-gray-700 "
           >
-            Nom* :
+            {dictionary.account.Nom} :
           </label>
           <input
             id="name"
@@ -65,7 +68,7 @@ export default function ClientForm() {
             value={name}
             required
             onChange={(e) => setName(e.target.value)}
-            className="mt-1 focus:border-9DC284 shadow-sm sm:text-sm border-gray-300  border"
+            className="mt-1 focus:border-[#9DC284] bg-[#9DC284] shadow-sm sm:text-sm border-gray-500  border"
           />
         </div>
         <div>
@@ -73,7 +76,7 @@ export default function ClientForm() {
             htmlFor="first_name"
             className="block text-sm font-medium text-gray-700"
           >
-            Prénom* :
+            {dictionary.account.Prenom} :
           </label>
           <input
             id="first_name"
@@ -82,7 +85,7 @@ export default function ClientForm() {
             value={first_name}
             required
             onChange={(e) => setFirstName(e.target.value)}
-            className="mt-1 focus:border-9DC284 bg-9DC284   shadow-sm sm:text-sm border-gray-300  border"
+            className="mt-1 focus:border-[#9DC284] bg-[#9DC284]   shadow-sm sm:text-sm border-gray-500  border"
           />
         </div>
         <div>
@@ -90,7 +93,7 @@ export default function ClientForm() {
             htmlFor="email"
             className="block text-sm font-medium text-gray-700"
           >
-            Email* :
+            {dictionary.account.Email}:
           </label>
           <input
             id="email"
@@ -99,7 +102,7 @@ export default function ClientForm() {
             value={email}
             required
             onChange={(e) => setEmail(e.target.value)}
-            className="mt-1 focus:border-9DC284 bg-9DC284   shadow-sm sm:text-sm border-gray-300  border"
+            className="mt-1 focus:border-[#9DC284] bg-[#9DC284]   shadow-sm sm:text-sm border-gray-500  border"
           />
         </div>
         <div>
@@ -107,7 +110,7 @@ export default function ClientForm() {
             htmlFor="address"
             className="block text-sm font-medium text-gray-700"
           >
-            Adresse* :
+            {dictionary.account.Adresse}:
           </label>
           <input
             id="address"
@@ -116,7 +119,7 @@ export default function ClientForm() {
             value={address}
             required
             onChange={(e) => setAddress(e.target.value)}
-            className="mt-1 focus:border-9DC284 bg-9DC284   shadow-sm sm:text-sm border-gray-300  border"
+            className="mt-1 focus:border-[#9DC284] bg-[#9DC284]   shadow-sm sm:text-sm border-gray-500  border"
           />
         </div>
         <div>
@@ -124,7 +127,7 @@ export default function ClientForm() {
             htmlFor="phone"
             className="block text-sm font-medium text-gray-700"
           >
-            Téléphone:
+            {dictionary.account.Telephone}:
           </label>
           <input
             id="phone"
@@ -132,11 +135,11 @@ export default function ClientForm() {
             type="text"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
-            className="mt-1 focus:border-9DC284 bg-9DC284   shadow-sm sm:text-sm border-gray-300  border"
+            className="mt-1 focus:border-[#9DC284] bg-[#9DC284]   shadow-sm sm:text-sm border-gray-500  border"
           />
         </div>
         <div className="flex items-center justify-center">
-          <Button type="submit" className="bg-[#9DC284]">Ajouter Client</Button>
+          <Button type="submit" className="bg-[#9DC284]">{dictionary.account.Valider}</Button>
         </div>
       </form>
     </div>
