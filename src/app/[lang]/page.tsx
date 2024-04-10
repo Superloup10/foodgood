@@ -33,7 +33,7 @@ export default function Home() {
     return (
     <>
         <header>
-            <Categorie onSearchName={()=> {}}/>
+            <Categorie/>
         </header>
         <main className="px-10 ">
             <div className="flex justify-justify-between gap-96">
