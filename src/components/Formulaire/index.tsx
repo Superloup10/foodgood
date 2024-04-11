@@ -85,7 +85,7 @@ export default function ClientForm() {
             value={first_name}
             required
             onChange={(e) => setFirstName(e.target.value)}
-            className="mt-1 focus:border-[#9DC284] bg-[#9DC284]   shadow-sm sm:text-sm border-gray-500  border"
+            className="mt-1 focus:border-[#9DC284] bg-[#9DC284]  shadow-sm sm:text-sm border-gray-500 border"
           />
         </div>
         <div>
