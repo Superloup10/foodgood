@@ -18,6 +18,9 @@ const config = {
             },
         },
         extend: {
+            backgroundImage:{
+                cadie:"url('/images/caddie.jpg')"
+            },
             colors: {
                 customGreen: '#9DC284',
                 border: "hsl(var(--border))",

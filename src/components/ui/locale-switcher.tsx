@@ -41,7 +41,7 @@ export default function LocaleSwitcher() {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="icon">
+                <Button variant="ghost" size="icon">
                     {localeSwitch(lang)}
                     <span className="sr-only">{dictionary.sr.language}</span>
                 </Button>
