@@ -5,6 +5,7 @@ import {type Locale} from "@/i18n-config";
 import DictionaryProvider from "@/context/DictionaryContext";
 import Navbar from "@/components/Navbar";
 
+import {AuthProvider} from "@/context/AuthContext";
 import SocialMediaLinks from "@/components/Reseau";
 import {CartProvider} from "@/context/CartContext";
 import {ReactNode} from "react";
@@ -25,9 +26,11 @@ export default function RootLayout({children, params}: Readonly<{
         <body className={jetbrains.className}>
         <DictionaryProvider locale={params.lang}>
             <CartProvider>
-                <Navbar/>
-                <SocialMediaLinks/>
-                {children}
+                <AuthProvider>
+                    <Navbar/>
+                    <SocialMediaLinks/>
+                    {children}
+                </AuthProvider>
             </CartProvider>
         </DictionaryProvider>
         </body>
