@@ -8,11 +8,13 @@ export class CartController{
 
 
   async addCart(request: NextRequest){
-    const{client_id,Product_id, created_at} = await request.json();
+    const{client_id,Product_id,product_amount, created_at} = await request.json();
     const Cart = await this.service.addCart(
       client_id,
       Product_id,
+      product_amount,
       created_at
+      
     );
     return NextResponse.json({Cart});
   }
