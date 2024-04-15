@@ -38,6 +38,9 @@ export class ProductService {
     image?: string,
     category?: Category
   ): Promise<Product | null> {
+    if (amount !== undefined && amount < 0) {
+      throw new Error(`La quantité ne peut pas être inférieure à zéro !`);
+    }
     const product = await this.repository.getProduct(name);
     if (!product) {
       throw new Error(`Le produit ${name} n'existe pas !`);

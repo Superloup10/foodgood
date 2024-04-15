@@ -1,3 +1,5 @@
+import { Cart } from "./cart.dto";
+
 export interface Client {
   id: number;
   name: string;
@@ -5,4 +7,5 @@ export interface Client {
   email: string;
   address: string;
   phone: string | null;
+  carts?: Cart[];
 }

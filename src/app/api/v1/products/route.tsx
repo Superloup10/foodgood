@@ -17,16 +17,4 @@ export async function POST(request: NextRequest) {
   return controller.addProduct(request);
 }
 
-export async function PUT(request: NextRequest) {
-  const controller = new ProductController(
-    new ProductService(new ProductRepository())
-  );
-  return controller.updateProduct(request);
-}
 
-export async function DELETE(request: NextRequest) {
-  const controller = new ProductController(
-    new ProductService(new ProductRepository())
-  );
-  return controller.deleteProduct(request);
-}
