@@ -9,13 +9,12 @@ export class CartService {
 
   async addCart(
     client: Client,
-    products: Product[],
-    product_amount: number,
+    productsAmounts: [Product, number][],
     created_at: Date
   ): Promise<Cart | null> {
     let result: Cart | null = null;
-    for (const product of products) {
-      result = await this.repository.addCart(client.id, product.id, product_amount, created_at);
+    for (const productsAmount of productsAmounts) {
+      result = await this.repository.addCart(client.id, productsAmount[0].id, productsAmount[1], created_at);
     }
     return result;
   }

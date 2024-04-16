@@ -7,6 +7,7 @@ import Navbar from "@/components/Navbar";
 
 import Reseau from "@/components/Reseau";
 import Categorie from "@/components/Categorie";
+import { CartProvider } from "@/context/CartContext";
 
 const jetbrains = JetBrains_Mono({ subsets: ["latin"] });
 
@@ -26,11 +27,11 @@ export default function RootLayout({
     <html lang={params.lang}>
       <body className={jetbrains.className}>
         <DictionaryProvider locale={params.lang}>
-          <Navbar />
-          
-
-          <Reseau />
-          {children}
+          <CartProvider>
+            <Navbar />
+            <Reseau />
+            {children}
+          </CartProvider>
         </DictionaryProvider>
       </body>
     </html>

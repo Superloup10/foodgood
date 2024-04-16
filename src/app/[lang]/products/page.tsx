@@ -37,10 +37,8 @@ export default function Produits() {
                     />
                   </Link>
                   <BoutonAjouterPanier
-                    onAjouter={() =>
-                      console.log(`Ajouter ${product.name} au panier`)
-                    }
                     classeBouton="absolute bottom-0 right-0 bg-customGreen hover: text-black ml-15"
+                    product={product}
                   />
                 </div>
 

@@ -1,10 +1,7 @@
 "use client";
 import BoutonAjouterPanier from "@/components/BoutonAjouterPanier";
-import Bouton_plus from "@/components/BoutonAjouterPanier";
-import { Button } from "@/components/ui/button";
 import { Product } from "@/domain/model/product.dto";
 import useFetch from "@/hooks/useFetch";
-
 import Image from "next/image";
 
 export default function ProductPage({ params }: { params: { name: string } }) {
@@ -24,8 +21,8 @@ export default function ProductPage({ params }: { params: { name: string } }) {
               height={200}
             />
             <BoutonAjouterPanier
-              onAjouter={() => console.log(`Ajouter ${product.name} au panier`)}
               classeBouton="absolute bottom-0 left-40 bg-customGreen hover: text-black ml-15"
+              product={product}
             />
           </div>
 
