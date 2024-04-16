@@ -17,13 +17,14 @@ export class ClientService {
     first_name: string,
     email: string,
     address: string,
+    hash_password: string,
     phone?: string
   ): Promise<Client> {
     const client = await this.repository.getClient(email);
     if (client) {
       throw new Error("Ce client existe déjà !");
     }
-    return this.repository.addClient(name, first_name, email, address, phone);
+    return this.repository.addClient(name, first_name, email, address, hash_password, phone);
   }
 
   async updateClient(
@@ -31,7 +32,8 @@ export class ClientService {
     name?: string,
     first_name?: string,
     address?: string,
-    phone?: string
+    phone?: string,
+    hash_password?: string,
   ): Promise<Client> {
     const client = await this.repository.getClient(email);
     if (!client) {
@@ -42,7 +44,8 @@ export class ClientService {
       name,
       first_name,
       address,
-      phone
+      phone,
+      hash_password
     );
   }
 

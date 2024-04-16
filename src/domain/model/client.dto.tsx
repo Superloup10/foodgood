@@ -7,5 +7,6 @@ export interface Client {
     email: string;
     address: string;
     phone?: string | null;
+    hash_password: string;
     carts?: Cart[];
 }

@@ -7,6 +7,7 @@ import {
   AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
+  AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
@@ -14,25 +15,25 @@ import {
 } from "@/components/ui/alert-dialog";
 
 export default function ProfileManagement() {
-  const [name, setName] = useState("");
-  const [first_name, setFirstName] = useState("");
-  const [email, setEmail] = useState("");
-  const [address, setAddress] = useState("");
-  const [phone, setPhone] = useState("");
+  const { client } = useAuth();
+  const [name, setName] = useState(client ? client.name : "");
+  const [first_name, setFirstName] = useState(client ? client.first_name : "");
+  const [email, setEmail] = useState(client ? client.email : "");
+  const [address, setAddress] = useState(client ? client.address : "");
+  const [phone, setPhone] = useState(client ? client.phone : "");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState<string | undefined>(undefined);
   const [successMessage, setSuccessMessage] = useState("");
-  const [clientEmail, setClientEmail] = useState("");
-  const { client } = useAuth();
   const [showConfirmation, setShowConfirmation] = useState(false);
 
   useEffect(() => {
     const errorTimeout = setTimeout(() => {
       setError("");
-    }, 3000); // Effacer l'erreur après 3 secondes
+    }, 5000); // Effacer l'erreur après 5 secondes
 
     const successTimeout = setTimeout(() => {
       setSuccessMessage("");
-    }, 3000); // Effacer le message de succès après 3 secondes
+    }, 5000); // Effacer le message de succès après 5 secondes
 
     return () => {
       clearTimeout(errorTimeout);
@@ -42,23 +43,16 @@ export default function ProfileManagement() {
 
   const handleGetClient = async () => {
     try {
-      if (!email) {
-        throw new Error(
-          "Veuillez fournir l'adresse e-mail du client à afficher."
-        );
+      if (!client) {
+        throw new Error("Utilisateur non connecté.");
       }
 
-      const response = await fetch(`/api/v1/client?email=${email}`);
-
-      if (response.ok) {
-        const data = await response.json();
-        setName(data.name);
-        setFirstName(data.first_name);
-        setAddress(data.address);
-        setPhone(data.phone);
-      } else {
-        throw new Error("La récupération du client a échoué.");
-      }
+      // Vous pouvez utiliser directement les informations du client connecté ici
+      setName(client.name);
+      setFirstName(client.first_name);
+      setEmail(client.email);
+      setAddress(client.address);
+      setPhone(client.phone);
     } catch (error: any) {
       setError(error.message);
     }
@@ -66,7 +60,15 @@ export default function ProfileManagement() {
 
   const handleUpdateProfile = async () => {
     try {
-      const data = { name, first_name, email, address, phone };
+      if (!password) {
+        throw new Error("Veuillez saisir votre mot de passe.");
+      }
+
+      // Effectuez la validation du mot de passe ici
+
+      // Si la validation réussit, procédez à la mise à jour du profil
+
+      const data = { name, first_name, email, address, phone, password };
       const updateResponse = await fetch(`/api/v1/client`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -85,46 +87,50 @@ export default function ProfileManagement() {
 
   const handleDeleteProfile = () => {
     try {
-      if (!email) {
-        throw new Error(
-          "Veuillez fournir l'adresse e-mail du client à supprimer."
-        );
-      } else {
-        setShowConfirmation(true);
+      if (!password) {
+        throw new Error("Veuillez saisir votre mot de passe.");
       }
+
+      // Effectuez la validation du mot de passe ici
+
+      // Si la validation réussit, procédez à la suppression du profil
+
+      setShowConfirmation(true);
     } catch (error: any) {
       setError(error.message);
     }
   };
 
   const handleConfirmDelete = async () => {
-    if (!error) {
-      try {
-        if (!email) {
-          throw new Error("Cet email n'existe pas.");
-        }
-
-        const response = await fetch(`/api/v1/client`, {
-          method: "DELETE",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email: email }),
-        });
-
-        if (response.ok) {
-          setSuccessMessage("Profil supprimé avec succès !");
-          setName("");
-          setFirstName("");
-          setEmail("");
-          setAddress("");
-          setPhone("");
-        } else {
-          throw new Error("La suppression du profil a échoué.");
-        }
-      } catch (error: any) {
-        setError(error.message);
-      } finally {
-        setShowConfirmation(false);
+    try {
+      if (!password) {
+        throw new Error("Veuillez saisir votre mot de passe.");
       }
+
+      // Effectuez la validation du mot de passe ici
+
+      // Si la validation réussit, procédez à la suppression du profil
+
+      const response = await fetch(`/api/v1/client`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email }),
+      });
+
+      if (response.ok) {
+        setSuccessMessage("Profil supprimé avec succès !");
+        setName("");
+        setFirstName("");
+        setEmail("");
+        setAddress("");
+        setPhone("");
+      } else {
+        throw new Error("La suppression du profil a échoué.");
+      }
+    } catch (error: any) {
+      setError(error.message);
+    } finally {
+      setShowConfirmation(false);
     }
   };
 
@@ -137,18 +143,9 @@ export default function ProfileManagement() {
       {error && <p className="text-red-500">{error}</p>}
       {successMessage && <p className="text-green-500">{successMessage}</p>}
       <h1 className="text-2xl font-bold mt-4 mb-2">Profil utilisateur</h1>
-      {client && (
-        <div className="bg-gray-100 p-4 rounded-lg my-4">
-          <p className="text-lg">Nom: {client.name}</p>
-          <p className="text-lg">Email: {client.email}</p>
-        </div>
-      )}
       <form className="mt-4 space-y-4" onSubmit={(e) => e.preventDefault()}>
         <div>
-          <label
-            htmlFor="email"
-            className="block text-sm font-medium text-gray-700"
-          >
+          <label htmlFor="email" className="block text-sm font-medium text-gray-700">
             Email:
           </label>
           <input
@@ -161,10 +158,7 @@ export default function ProfileManagement() {
           />
         </div>
         <div>
-          <label
-            htmlFor="name"
-            className="block text-sm font-medium text-gray-700"
-          >
+          <label htmlFor="name" className="block text-sm font-medium text-gray-700">
             Nom:
           </label>
           <input
@@ -176,10 +170,7 @@ export default function ProfileManagement() {
           />
         </div>
         <div>
-          <label
-            htmlFor="first_name"
-            className="block text-sm font-medium text-gray-700"
-          >
+          <label htmlFor="first_name" className="block text-sm font-medium text-gray-700">
             Prénom:
           </label>
           <input
@@ -191,10 +182,7 @@ export default function ProfileManagement() {
           />
         </div>
         <div>
-          <label
-            htmlFor="address"
-            className="block text-sm font-medium text-gray-700"
-          >
+          <label htmlFor="address" className="block text-sm font-medium text-gray-700">
             Adresse:
           </label>
           <input
@@ -206,10 +194,7 @@ export default function ProfileManagement() {
           />
         </div>
         <div>
-          <label
-            htmlFor="phone"
-            className="block text-sm font-medium text-gray-700"
-          >
+          <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
             Téléphone:
           </label>
           <input
@@ -217,6 +202,18 @@ export default function ProfileManagement() {
             type="tel"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
+            className="mt-1 focus:border-[#9DC284] bg-[#9DC284] shadow-sm sm:text-sm border-gray-500 border"
+          />
+        </div>
+        <div>
+          <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+            Mot de passe :
+          </label>
+          <input
+            id="password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             className="mt-1 focus:border-[#9DC284] bg-[#9DC284] shadow-sm sm:text-sm border-gray-500 border"
           />
         </div>
@@ -230,11 +227,7 @@ export default function ProfileManagement() {
         </Button>
         <AlertDialog>
           <AlertDialogTrigger>
-            <Button
-              onClick={handleDeleteProfile}
-              variant="destructive"
-              className="bg-red-500"
-            >
+            <Button onClick={handleDeleteProfile} variant="destructive" className="bg-red-500">
               Supprimer
             </Button>
           </AlertDialogTrigger>
@@ -245,16 +238,10 @@ export default function ProfileManagement() {
               </AlertDialogTitle>
             </AlertDialogHeader>
             <AlertDialogFooter>
-              <AlertDialogCancel
-                onClick={handleCancelDelete}
-                className="bg-[#9DC284]"
-              >
+              <AlertDialogCancel onClick={handleCancelDelete} className="bg-[#9DC284]">
                 Non
               </AlertDialogCancel>
-              <AlertDialogAction
-                onClick={handleConfirmDelete}
-                className="bg-red-500"
-              >
+              <AlertDialogAction onClick={handleConfirmDelete} className="bg-red-500">
                 Oui
               </AlertDialogAction>
             </AlertDialogFooter>

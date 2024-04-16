@@ -25,6 +25,7 @@
     "address": "Adresse*",
     "phone": "Téléphone",
     "submit": "Valider",
-    "signup": "Inscription"
+    "signup": "Inscription",
+    "login": "Se connecter"
   }
 }

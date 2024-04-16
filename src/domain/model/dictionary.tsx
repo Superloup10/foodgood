@@ -28,6 +28,7 @@ export type Dictionary = {
         phone: string;
         submit: string;
         signup: string;
+        login: string;
         [key: string]: string;
     }
 };
