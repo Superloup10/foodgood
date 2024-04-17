@@ -6,6 +6,6 @@ export interface Client {
   first_name: string;
   email: string;
   address: string;
-  phone: string | null;
+  phone?: string | null;
   carts?: Cart[];
 }

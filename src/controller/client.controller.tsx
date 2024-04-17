@@ -5,8 +5,7 @@ export class ClientController {
   constructor(private readonly service: ClientService) {}
 
   async getClient(request: NextRequest): Promise<NextResponse> {
-    const searchParams = new URLSearchParams(request.nextUrl.search);
-    const email = searchParams.get("email");
+    const email = request.nextUrl.searchParams.get("email");
     if (!email) {
       return NextResponse.json("Le paramètre email est manquant !");
     }

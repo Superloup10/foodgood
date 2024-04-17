@@ -5,5 +5,5 @@ export interface Buy {
   cart_id: number;
   product_id: number;
   cart?: Cart | null;
-  product: Product | null;
+  product?: Product | null;
 }

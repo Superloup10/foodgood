@@ -17,7 +17,7 @@ export class ClientService {
     first_name: string,
     email: string,
     address: string,
-    phone: string
+    phone?: string
   ): Promise<Client> {
     const client = await this.repository.getClient(email);
     if (client) {

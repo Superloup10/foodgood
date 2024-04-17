@@ -15,7 +15,7 @@ model client {
   phone         String? @db.VarChar(50)
   address       String  @db.VarChar
   hash_password String  @default("") @db.VarChar
-  carts         cart?
+  carts         cart[]
 }
 
 model product {
@@ -25,20 +25,20 @@ model product {
   amount   Int
   image    String
   category Category
-  buys     buy?
+  buys     buy[]
 }
 
 model cart {
   id         Int      @id @default(autoincrement())
   created_at DateTime @db.Date
-  client_id  Int      @unique
-  buys       buy?
+  client_id  Int
+  buys       buy[]
   client     client   @relation(fields: [client_id], references: [id])
 }
 
 model buy {
-  product_id     Int     @unique
-  cart_id        Int     @unique
+  product_id     Int
+  cart_id        Int
   product_amount Int
   cart           cart    @relation(fields: [cart_id], references: [id])
   product        product @relation(fields: [product_id], references: [id])
