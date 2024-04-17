@@ -11,7 +11,7 @@ export class ClientRepository {
     email: string,
     address: string,
     hash_password: string,
-    phone?: string
+    phone?: string | null
   ): Promise<Client> {
     return prisma.client.create({
       data: { name, first_name, email, address, phone, hash_password },
@@ -22,7 +22,7 @@ export class ClientRepository {
     name?: string,
     first_name?: string,
     address?: string,
-    phone?: string,
+    phone?: string | null,
     hash_password?: string
   ): Promise<Client> {
     return prisma.client.update({

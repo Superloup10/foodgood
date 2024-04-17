@@ -43,38 +43,57 @@ export default function ProfileManagement() {
 
   const handleGetClient = async () => {
     try {
-      if (!client) {
-        throw new Error("Utilisateur non connecté.");
+      if (!email) {
+        throw new Error('Veuillez fournir l\'adresse e-mail du client à afficher.');
       }
 
-      // Vous pouvez utiliser directement les informations du client connecté ici
-      setName(client.name);
-      setFirstName(client.first_name);
-      setEmail(client.email);
-      setAddress(client.address);
-      setPhone(client.phone);
-    } catch (error: any) {
-      setError(error.message);
+      const response = await fetch(`/api/v1/client?email=${email}`);
+
+      if (response.ok) {
+        const data = await response.json();
+        setName(data.name);
+        setFirstName(data.first_name);
+        setAddress(data.address);
+        setPhone(data.phone);
+      } else {
+        throw new Error('La récupération du client a échoué.');
+      }
+    } catch (error) {
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError('Une erreur inconnue s\'est produite.');
+      }
     }
   };
 
+  
   const handleUpdateProfile = async () => {
     try {
       if (!password) {
         throw new Error("Veuillez saisir votre mot de passe.");
       }
-
-      // Effectuez la validation du mot de passe ici
-
+  
+      // Récupérer le mot de passe correspondant à l'email dans la base de données
+      const response = await fetch(`/api/v1/login`);
+      if (!response.ok) {
+        throw new Error("La récupération du mot de passe a échoué.");
+      }
+      const { storedPassword } = await response.json();
+  
+      // Comparer le mot de passe saisi avec celui de la base de données
+      if (password !== storedPassword) {
+        throw new Error("Le mot de passe saisi est incorrect.");
+      }
+  
       // Si la validation réussit, procédez à la mise à jour du profil
-
       const data = { name, first_name, email, address, phone, password };
       const updateResponse = await fetch(`/api/v1/client`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-
+  
       if (updateResponse.ok) {
         setSuccessMessage("Client modifié avec succès !");
       } else {
@@ -102,37 +121,46 @@ export default function ProfileManagement() {
   };
 
   const handleConfirmDelete = async () => {
-    try {
-      if (!password) {
-        throw new Error("Veuillez saisir votre mot de passe.");
-      }
-
-      // Effectuez la validation du mot de passe ici
-
-      // Si la validation réussit, procédez à la suppression du profil
-
-      const response = await fetch(`/api/v1/client`, {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: email }),
-      });
-
-      if (response.ok) {
-        setSuccessMessage("Profil supprimé avec succès !");
-        setName("");
-        setFirstName("");
-        setEmail("");
-        setAddress("");
-        setPhone("");
-      } else {
-        throw new Error("La suppression du profil a échoué.");
-      }
-    } catch (error: any) {
-      setError(error.message);
-    } finally {
-      setShowConfirmation(false);
+  try {
+    if (!password) {
+      throw new Error("Veuillez saisir votre mot de passe.");
     }
-  };
+
+    // Récupérer le mot de passe correspondant à l'email dans la base de données
+    const response = await fetch(`/api/v1/login/password?email=${email}`);
+    if (!response.ok) {
+      throw new Error("La récupération du mot de passe a échoué.");
+    }
+    const { storedPassword } = await response.json();
+
+    // Comparer le mot de passe saisi avec celui de la base de données
+    if (password !== storedPassword) {
+      throw new Error("Le mot de passe saisi est incorrect.");
+    }
+
+    // Si la validation réussit, procédez à la suppression du profil
+    const deleteResponse = await fetch(`/api/v1/client`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: email }),
+    });
+
+    if (deleteResponse.ok) {
+      setSuccessMessage("Profil supprimé avec succès !");
+      setName("");
+      setFirstName("");
+      setEmail("");
+      setAddress("");
+      setPhone("");
+    } else {
+      throw new Error("La suppression du profil a échoué.");
+    }
+  } catch (error: any) {
+    setError(error.message);
+  } finally {
+    setShowConfirmation(false);
+  }
+};
 
   const handleCancelDelete = () => {
     setShowConfirmation(false);
@@ -200,7 +228,7 @@ export default function ProfileManagement() {
           <input
             id="phone"
             type="tel"
-            value={phone}
+            
             onChange={(e) => setPhone(e.target.value)}
             className="mt-1 focus:border-[#9DC284] bg-[#9DC284] shadow-sm sm:text-sm border-gray-500 border"
           />

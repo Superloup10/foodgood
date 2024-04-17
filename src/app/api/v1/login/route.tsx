@@ -11,6 +11,10 @@ export async function POST(request: NextRequest) {
     console.log(email);
     const service = new ClientService(new ClientRepository());
     const client = await service.getClient(email);
+    
+    if (!client) {
+      throw new Error("Invalid email or password");
+    }
     const match = await bcrypt.compare(password, client.hash_password);
     // Vérifier si l'utilisateur existe et si le mot de passe correspond
     if (match) {

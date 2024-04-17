@@ -1,8 +1,7 @@
-"use client";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Button } from "../ui/button";
 import { useDictionary } from "@/context/DictionaryContext";
-import Link from "next/link"; // Importez Link pour gérer les redirections
+import Link from "next/link";
 
 interface Props {
   handleSuccessfulLogin: () => void;
@@ -18,21 +17,20 @@ export default function FormulaireConnexion({ handleSuccessfulLogin }: Props) {
   const handleConnexion = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const data = { email, password };
-      const loginResponse = await fetch("/api/v1/login", {
+      const response = await fetch("/api/v1/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ email, password }),
       });
 
-      if (loginResponse.ok) {
+      if (response.ok) {
         setShowError(false);
         handleSuccessfulLogin();
       } else {
         throw new Error("Échec de la connexion.");
       }
     } catch (error) {
-      setError("Une erreur inconnue s'est produite.");
+      setError("Email ou mot de passe incorrect.");
       setShowError(true);
     }
   };
@@ -79,7 +77,6 @@ export default function FormulaireConnexion({ handleSuccessfulLogin }: Props) {
           <Button type="submit" className="bg-[#9DC284]">
             {dictionary.account.login}
           </Button>
-          {/* Utilisez un composant Link pour rediriger vers la page forgot-password */}
           <Link href="/forgot-password">
             <span className="text-[#9DC284] hover:underline">
               Mot de passe oublié ?
@@ -90,3 +87,4 @@ export default function FormulaireConnexion({ handleSuccessfulLogin }: Props) {
     </div>
   );
 }
+
