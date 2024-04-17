@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import { useDictionary } from "@/context/DictionaryContext";
 
 export default function ClientForm() {
@@ -59,7 +59,7 @@ export default function ClientForm() {
             htmlFor="name"
             className="block text-sm font-custom text-gray-700 "
           >
-            {dictionary.account.Nom} :
+            {dictionary.account.name} :
           </label>
           <input
             id="name"
@@ -76,7 +76,7 @@ export default function ClientForm() {
             htmlFor="first_name"
             className="block text-sm font-medium text-gray-700"
           >
-            {dictionary.account.Prenom} :
+            {dictionary.account.first_name} :
           </label>
           <input
             id="first_name"
@@ -93,7 +93,7 @@ export default function ClientForm() {
             htmlFor="email"
             className="block text-sm font-medium text-gray-700"
           >
-            {dictionary.account.Email}:
+            {dictionary.account.email}:
           </label>
           <input
             id="email"
@@ -110,7 +110,7 @@ export default function ClientForm() {
             htmlFor="address"
             className="block text-sm font-medium text-gray-700"
           >
-            {dictionary.account.Adresse}:
+            {dictionary.account.address}:
           </label>
           <input
             id="address"
@@ -127,7 +127,7 @@ export default function ClientForm() {
             htmlFor="phone"
             className="block text-sm font-medium text-gray-700"
           >
-            {dictionary.account.Telephone}:
+            {dictionary.account.phone}:
           </label>
           <input
             id="phone"
@@ -139,7 +139,7 @@ export default function ClientForm() {
           />
         </div>
         <div className="flex items-center justify-center">
-          <Button type="submit" className="bg-[#9DC284]">{dictionary.account.Valider}</Button>
+          <Button type="submit" className="bg-[#9DC284]">{dictionary.account.submit}</Button>
         </div>
       </form>
     </div>

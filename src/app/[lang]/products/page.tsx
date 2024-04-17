@@ -3,7 +3,7 @@ import useFetch from "@/hooks/useFetch";
 import React, { useState } from "react";
 import { Product } from "@/domain/model/product.dto";
 import Image from "next/image";
-import Categorie from "@/components/Categorie";
+import CategoryNavigation from "@/components/Categorie";
 import Link from "next/link";
 import Bouton from "@/components/bouton_recherche";
 import BoutonAjouterPanier from "@/components/BoutonAjouterPanier";
@@ -20,7 +20,7 @@ export default function Produits() {
     <>
       <header>
         <Bouton onSearchName={(value) => setSearchTerm(value)} />
-        <Categorie />
+        <CategoryNavigation />
       </header>
       <div className="flex flex-col items-center mt-11">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 w-full">

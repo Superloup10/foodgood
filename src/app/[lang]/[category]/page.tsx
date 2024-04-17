@@ -1,7 +1,7 @@
 "use client";
 
 import BoutonAjouterPanier from "@/components/BoutonAjouterPanier";
-import Categorie from "@/components/Categorie";
+import CategoryNavigation from "@/components/Categorie";
 import {Category} from "@/domain/model/category";
 import {Product} from "@/domain/model/product.dto";
 import useFetch from "@/hooks/useFetch";
@@ -26,7 +26,7 @@ export default function CategoryPage({params}: { params: { category: string }; }
 
     return (
         <>
-            <Categorie/>
+            <CategoryNavigation/>
             <div className="mt-20 grid grid-cols-3 gap-4">
                 {productImages.map((product) => (
                     <div key={product.id} className="flex flex-col items-center relative">

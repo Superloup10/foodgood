@@ -13,21 +13,18 @@
     "vegetable": "Vegetables",
     "dairy_product": "Dairies Products"
   },
-  "navebar":{
-    
-    "Nos_produits": "Our products",
-     "Nous_contacter": "Contact us",
-     "Mon_compte" : "my account"
-
+  "navebar": {
+    "products": "Our products",
+    "contact": "Contact us",
+    "account": "my account"
   },
   "account": {
-    "Nom": "Name*",
-    "Prenom": "First name*",
-    "Email": "Email*",
-    "Adresse": "Address*",
-    "Telephone": "Phone*",
-    "Valider":"Submit",
-    "Inscription":"Inscription"
+    "name": "Name*",
+    "first_name": "First name*",
+    "email": "Email*",
+    "address": "Address*",
+    "phone": "Phone",
+    "submit": "Submit",
+    "signup": "Inscription"
   }
-
 }

@@ -9,7 +9,7 @@ export default function Account() {
   
     <>
       <header className="flex justify-center mt-20 text-3xl ">
-          <h1 className="font-bold "> {dictionary.account.Inscription}</h1>
+          <h1 className="font-bold "> {dictionary.account.signup}</h1>
         </header>
       <div className="flex justify-between mt-11">
       

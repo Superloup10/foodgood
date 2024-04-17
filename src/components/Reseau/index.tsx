@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Reseau() {
+export default function SocialMediaLinks() {
   return (
     <div className="fixed bottom-0 left-0 right-0 flex justify-center      ">
       <div className="flex justify-center  ">

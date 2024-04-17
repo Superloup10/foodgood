@@ -1,6 +1,6 @@
-import {Client} from "../model/client.dto";
-import {CartRepository} from "../repository/cart.repository";
-import {Cart} from "../model/cart.dto";
+import {Client} from "@/domain/model/client.dto";
+import {CartRepository} from "@/domain/repository/cart.repository";
+import {Cart} from "@/domain/model/cart.dto";
 import {CartItem} from "@/domain/model/cartitem";
 
 export class CartService {

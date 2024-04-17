@@ -1,5 +1,5 @@
-import { Cart } from "./cart.dto";
-import { Product } from "./product.dto";
+import { Cart } from "@/domain/model/cart.dto";
+import { Product } from "@/domain/model/product.dto";
 
 export interface Buy {
   cart_id: number;

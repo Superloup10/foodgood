@@ -12,8 +12,7 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
-import Reseau from "@/components/Reseau";
-import Categorie from "@/components/Categorie";
+import CategoryNavigation from "@/components/Categorie";
 
 export default function Home() {
     const {data: products} = useFetch<Product[]>("/api/v1/products");
@@ -31,53 +30,51 @@ export default function Home() {
     }
 
     return (
-    <>
-        <header>
-            <Categorie/>
-        </header>
-        <main className="px-10 ">
-            <div className="flex justify-justify-between gap-96">
-                <div className="mt-36">
-                    <Carousel
-                        opts={{align: "start", loop: true}}
-                        className="w-full"
-                        plugins={[
-                            Autoplay({
-                                delay: 1000,
-                            }),
-                        ]}
-                    >
-                        <CarouselContent className="-ml-4 flex items-center">
-                            {products &&
-                                getProduitsAleatoires().map((product) => (
-                                    <CarouselItem key={product.id} className="pl-4 basis-1/5">
-                                        <Link href={`/product/${product.name}`}>
-                                            <Image
-                                                src={product.image}
-                                                alt={product.name}
-                                                width={200}
-                                                height={1}
-                                            />
-                                        </Link>
-                                    </CarouselItem>
-                                ))}
-                        </CarouselContent>
-                        <CarouselPrevious/>
-                        <CarouselNext/>
-                    </Carousel>
+        <>
+            <header>
+                <CategoryNavigation/>
+            </header>
+            <main className="px-10 ">
+                <div className="flex justify-justify-between gap-96">
+                    <div className="mt-36">
+                        <Carousel
+                            opts={{align: "start", loop: true}}
+                            className="w-full"
+                            plugins={[
+                                Autoplay({
+                                    delay: 1000,
+                                }),
+                            ]}
+                        >
+                            <CarouselContent className="-ml-4 flex items-center">
+                                {products &&
+                                    getProduitsAleatoires().map((product) => (
+                                        <CarouselItem key={product.id} className="pl-4 basis-1/5">
+                                            <Link href={`/product/${product.name}`}>
+                                                <Image
+                                                    src={product.image}
+                                                    alt={product.name}
+                                                    width={200}
+                                                    height={1}
+                                                />
+                                            </Link>
+                                        </CarouselItem>
+                                    ))}
+                            </CarouselContent>
+                            <CarouselPrevious/>
+                            <CarouselNext/>
+                        </Carousel>
+                    </div>
+                    <div className="mt-5">
+                        <Image
+                            src="/images/caddie.jpg"
+                            alt="chariot"
+                            width={3000}
+                            height={1}
+                        />
+                    </div>
                 </div>
-                <div className="mt-5">
-
-                    <Image
-                        src="/images/caddie.jpg"
-                        alt="chariot"
-                        width={3000}
-                        height={1}
-                    />
-                </div>
-            </div>
-            <Reseau/>
-        </main>
+            </main>
         </>
     );
 }

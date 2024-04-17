@@ -1,5 +1,5 @@
 import prisma from "@/lib/prismadb";
-import {Cart} from "../model/cart.dto";
+import {Cart} from "@/domain/model/cart.dto";
 import {Buy} from "@/domain/model/buy.dto";
 
 export class CartRepository {
