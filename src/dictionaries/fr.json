@@ -1,0 +1,33 @@
+{
+  "sr": {
+    "language": "Changer de langue"
+  },
+  "languages": {
+    "fr": "Français",
+    "en": "Anglais"
+  },
+  "category": {
+    "meat": "Viandes",
+    "grocery": "Épiceries",
+    "fruit": "Fruits",
+    "vegetable": "Légumes",
+    "dairy_product": "Produits laitiers"
+  },
+  "navebar": {
+    "products": "Nos produits",
+    "contact": "Nous contacter",
+    "account": "Mon compte"
+  },
+  "account": {
+    "name": "Nom*",
+    "first_name": "Prénom*",
+    "email": "Email*",
+    "address": "Adresse*",
+    "phone": "Téléphone",
+    "submit": "Valider",
+    "password": "Mot de passe",
+    "missing_password": "Mot de passe oublié ?",
+    "signup": "Inscription",
+    "login": "Se connecter"
+  }
+}

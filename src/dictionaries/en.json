@@ -1,0 +1,33 @@
+{
+  "sr": {
+    "language": "Toggle language"
+  },
+  "languages": {
+    "fr": "French",
+    "en": "English"
+  },
+  "category": {
+    "meat": "Meats",
+    "grocery": "Groceries",
+    "fruit": "Fruits",
+    "vegetable": "Vegetables",
+    "dairy_product": "Dairies Products"
+  },
+  "navebar": {
+    "products": "Our products",
+    "contact": "Contact us",
+    "account": "my account"
+  },
+  "account": {
+    "name": "Name*",
+    "first_name": "First name*",
+    "email": "Email*",
+    "address": "Address*",
+    "phone": "Phone",
+    "submit": "Submit",
+    "password": "Password",
+    "missing_password": "Missing password ?",
+    "signup": "Sign up",
+    "login": "Log in"
+  }
+}

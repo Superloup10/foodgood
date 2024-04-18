@@ -1,0 +1,3 @@
+[submodule "mobile"]
+	path = mobile
+	url = git@github.com:Superloup10/FoodGoodMobile.git
