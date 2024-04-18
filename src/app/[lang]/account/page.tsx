@@ -17,28 +17,17 @@ export default function Account() {
     // États pour gérer l'affichage des différents composants
     const [showInscriptionForm, setShowInscriptionForm] = useState(false);
     const [showConnexionForm, setShowConnexionForm] = useState(true);
-    const [showProfileManagement, setShowProfileManagement] = useState(false);
-
-    // Fonction appelée une fois que la connexion réussit
-    /*const handleSuccessfulLogin = () => {
-      login(); // Met à jour isAuthenticated après une connexion réussie
-      setShowProfileManagement(true);
-      setShowConnexionForm(false);
-      setShowInscriptionForm(false);
-    };*/
 
     // Fonction pour afficher le formulaire d'inscription
     const handleShowInscriptionForm = () => {
         setShowInscriptionForm(true);
         setShowConnexionForm(false);
-        setShowProfileManagement(false);
     };
 
     // Fonction pour afficher le formulaire de connexion
     const handleShowConnexionForm = () => {
         setShowInscriptionForm(false);
         setShowConnexionForm(true);
-        setShowProfileManagement(false);
     };
 
     // Rendu conditionnel des composants en fonction de l'authentification
@@ -47,7 +36,7 @@ export default function Account() {
             {!isAuthenticated && (
                 <>
                     <header className="flex justify-center mt-20 text-3xl">
-                        <h1 className="font-bold">{dictionary.account.Inscription}</h1>
+                        <h1 className="font-bold">{dictionary.account.signup}</h1>
                     </header>
                     <div>
                         <div className="flex justify-center space-x-4">

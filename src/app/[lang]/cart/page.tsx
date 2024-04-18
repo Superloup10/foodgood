@@ -7,6 +7,7 @@ import {Client} from "@/domain/model/client.dto";
 import {useParams, useRouter} from "next/navigation";
 import {CartItem} from "@/domain/model/cartitem";
 import {Locale} from "@/i18n-config";
+import {useAuth} from "@/context/AuthContext";
 
 type CartResponse = { message: string };
 
@@ -24,7 +25,7 @@ export default function CartPage() {
     const [data, setData] = useState<{ message: string } | null>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const [done, setDone] = useState<boolean>(false);
-    const isAuthenticated = true;
+    const {isAuthenticated, client} = useAuth();
     const {cart, clearCart} = useCart();
     const lang = useParams().lang as Locale;
     const router = useRouter();
@@ -43,7 +44,6 @@ export default function CartPage() {
             // TODO Add process paiement
 
             const currentDate = new Date();
-            const client: Client | null = null;
             const sendCart = async (cart: CartItem[], client: Client | null, currentDate: Date) => {
                 const response = await fetch(`/api/v1/cart`, {
                     method: "POST",
@@ -65,7 +65,7 @@ export default function CartPage() {
                 setDone(true);
             }).finally(() => setLoading(false));
         }
-    }, [cart]);
+    }, [cart, client]);
 
     useEffect(() => {
         if (done && !loading && data && data.message === "Cart added successfully.") {

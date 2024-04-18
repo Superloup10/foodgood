@@ -42,7 +42,7 @@ export default function FormulaireConnexion() {
             htmlFor="email"
             className="block text-sm font-medium text-gray-700"
           >
-            {dictionary.account.Email}:
+            {dictionary.account.email}:
           </label>
           <input
             id="email"
