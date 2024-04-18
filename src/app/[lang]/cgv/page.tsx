@@ -14,20 +14,20 @@ export default function Cgv() {
           termes employés ci-après avec une majuscule ont la définition suivante
           : Centre FOODGOOD : tout hypermarché, supermarché et/ou magasin
           spécialisé physique exploité sous enseigne FOODGOOD qui propose des
-          produits à la vente via le service "Click&Collect" sur le Site Client
+          produits à la vente via le service &quot;Click&Collect&quot; sur le Site Client
           : personne physique ou morale souhaitant effectuer un achat sur le
           Site pour un usage final des produits Conditions Particulières
           Vendeurs : les Conditions Particulières de Vente du Vendeur Tiers CGV
           : les présentes conditions générales de vente FCOMMERCE : société
-          proposant des produits à la vente sur le site qu'elle exploite, telle
-          qu'identifiée ci-dessous. Marketplace : espace sur le Site réservé aux
-          Vendeurs Tiers sur lequel ces derniers proposent des offres Offre :
-          ensemble d'informations précontractuelles liées aux produits proposés
-          à la vente sur le Site et notamment les informations liées au prix,
-          stocks disponibles, types de produit et délais de livraison. Site :
-          site e-commerce www.foodgood.com Vendeurs Tiers : vendeurs
-          professionnels proposant des produits à la vente sur la Marketplace du
-          Site
+          proposant des produits à la vente sur le site qu&apos;elle exploite,
+          telle qu&apos;identifiée ci-dessous. Marketplace : espace sur le Site
+          réservé aux Vendeurs Tiers sur lequel ces derniers proposent des
+          offres Offre : ensemble d&apos;informations précontractuelles liées
+          aux produits proposés à la vente sur le Site et notamment les
+          informations liées au prix, stocks disponibles, types de produit et
+          délais de livraison. Site : site e-commerce www.foodgood.com Vendeurs
+          Tiers : vendeurs professionnels proposant des produits à la vente sur
+          la Marketplace du Site
         </p>
       </div>
     </div>
