@@ -4,6 +4,7 @@ import Link from "next/link";
 import LocaleSwitcher from "../ui/locale-switcher";
 import {useDictionary} from "@/context/DictionaryContext";
 import Cart from "../Cart";
+import Cgv from "@/app/[lang]/cgv/page";
 
 export default function Navbar() {
     const {dictionary} = useDictionary();
@@ -53,6 +54,9 @@ export default function Navbar() {
                     </Link>
                 </div>
                 <LocaleSwitcher/>
+                <Link href="/cgv">
+                    CGV
+                </Link>
             </ul>
         </div>
     );
