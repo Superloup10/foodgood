@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
 
   try {
     // Générer un token unique
-    const token = generateToken();
+    const token = await generateToken(email);
     // Envoyer un e-mail avec le lien de réinitialisation
     await sendResetPasswordEmail(email, token);
     // Stocker le token dans un cookie
