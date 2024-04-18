@@ -33,7 +33,7 @@ export default function CartPage() {
 
     useEffect(() => {
         // Verification quantity product's
-        if (cart && cart.length > 0) {
+        if (isAuthenticated && cart && cart.length > 0) {
             cart.map(async (item) => {
                 const product: Product = await fetchProductData(item.product.name);
                 if (product.amount < item.quantity) {
@@ -65,7 +65,7 @@ export default function CartPage() {
                 setDone(true);
             }).finally(() => setLoading(false));
         }
-    }, [cart, client]);
+    }, [cart, client, isAuthenticated]);
 
     useEffect(() => {
         if (done && !loading && data && data.message === "Cart added successfully.") {
