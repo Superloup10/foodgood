@@ -5,7 +5,7 @@ import { Client } from '@/domain/model/client.dto';
 // Définition du type pour le contexte d'authentification
 type AuthContextType = {
   isAuthenticated: boolean;
-  login: () => void;
+  login: (email: string) => void;
   logout: () => void;
   client: Client | null; // Ajoutez user au contexte d'authentification
 };
@@ -13,7 +13,7 @@ type AuthContextType = {
 // Création du contexte d'authentification avec une valeur initiale par défaut
 const AuthContext = createContext<AuthContextType>({
   isAuthenticated: false,
-  login: () => {},
+  login: (email: string) => {},
   logout: () => {},
   client: null, // Initialisez user à null
 });
@@ -24,11 +24,11 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const [client, setClient] = useState<Client | null>(null); // Initialisez user à null
 
   // Fonction pour connecter l'utilisateur
-  const login = async () => {
+  const login = async (email: string) => {
     try {
       setIsAuthenticated(true);
       // Faites une requête au backend pour récupérer les informations du client connecté
-      const response = await fetch('/api/v1/client');
+      const response = await fetch(`/api/v1/client?email=${email}`);
       if (response.ok) {
         const clientData = await response.json();
         setClient(clientData); // Mettez à jour les informations du client avec les données récupérées

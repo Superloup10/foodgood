@@ -2,12 +2,10 @@ import React, { useState } from "react";
 import { Button } from "../ui/button";
 import { useDictionary } from "@/context/DictionaryContext";
 import Link from "next/link";
+import {useAuth} from "@/context/AuthContext";
 
-interface Props {
-  handleSuccessfulLogin: () => void;
-}
-
-export default function FormulaireConnexion({ handleSuccessfulLogin }: Props) {
+export default function FormulaireConnexion() {
+  const {login} = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string>("");
@@ -25,7 +23,7 @@ export default function FormulaireConnexion({ handleSuccessfulLogin }: Props) {
 
       if (response.ok) {
         setShowError(false);
-        handleSuccessfulLogin();
+        login(email);
       } else {
         throw new Error("Échec de la connexion.");
       }
@@ -61,7 +59,7 @@ export default function FormulaireConnexion({ handleSuccessfulLogin }: Props) {
             htmlFor="password"
             className="block text-sm font-medium text-gray-700"
           >
-            {dictionary.account.password}Mot de Passe:
+            {dictionary.account.password}:
           </label>
           <input
             id="password"
@@ -79,7 +77,7 @@ export default function FormulaireConnexion({ handleSuccessfulLogin }: Props) {
           </Button>
           <Link href="/forgot-password">
             <span className="text-[#9DC284] hover:underline">
-              Mot de passe oublié ?
+              {dictionary.account.missing_password}
             </span>
           </Link>
         </div>

@@ -25,6 +25,8 @@
     "address": "Address*",
     "phone": "Phone",
     "submit": "Submit",
+    "password": "Password",
+    "missing_password": "Missing password ?",
     "signup": "Sign up",
     "login": "Log in"
   }

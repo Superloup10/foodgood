@@ -25,6 +25,8 @@
     "address": "Adresse*",
     "phone": "Téléphone",
     "submit": "Valider",
+    "password": "Mot de passe",
+    "missing_password": "Mot de passe oublié ?",
     "signup": "Inscription",
     "login": "Se connecter"
   }

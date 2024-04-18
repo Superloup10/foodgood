@@ -27,6 +27,8 @@ export type Dictionary = {
         address: string;
         phone: string;
         submit: string;
+        password: string;
+        missing_password: string;
         signup: string;
         login: string;
         [key: string]: string;
